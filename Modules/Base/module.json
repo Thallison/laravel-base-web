@@ -1,0 +1,11 @@
+{
+    "name": "Base",
+    "alias": "base",
+    "description": "Modulo Base con funcionalidades costumes para os demais modulos do projeto",
+    "keywords": [],
+    "priority": 0,
+    "providers": [
+        "Modules\\Base\\Providers\\BaseServiceProvider"
+    ],
+    "files": []
+}
