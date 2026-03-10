@@ -12,6 +12,11 @@
     @enderror
     <div class="card-body login-card-body">
         <p class="login-box-msg">Faça login para iniciar sua sessão</p>
+        @if (session('status'))
+            <div class="alert alert-success" role="alert">
+                {{ session('status') }}
+            </div>
+        @endif
         <form action="{{ route('login') }}" method="post">
         @csrf
         <div class="input-group mb-3">
@@ -45,7 +50,7 @@
         <!--end::Row-->
         </form>
         <div class="mt-2 text-center">
-        <p class="mb-1"><a href="forgot-password.html">Esqueci minha senha</a></p>
+        <p class="mb-1"><a href="{{ route('password.request') }}">Esqueci minha senha</a></p>
         </div>
     </div>
     </div>
