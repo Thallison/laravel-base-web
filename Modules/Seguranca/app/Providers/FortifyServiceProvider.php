@@ -13,7 +13,7 @@ use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Str;
 use Laravel\Fortify\Actions\RedirectIfTwoFactorAuthenticatable;
 use Laravel\Fortify\Fortify;
-use Modules\Seguranca\Entities\Usuarios;
+use Modules\Seguranca\Models\Usuarios;
 use Illuminate\Validation\ValidationException;
 use Illuminate\Support\Facades\Hash;
 

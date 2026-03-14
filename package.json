@@ -19,6 +19,8 @@
         "@popperjs/core": "^2.11.8",
         "admin-lte": "^4.0.0-rc4",
         "bootstrap": "^5.3.8",
-        "bootstrap-icons": "^1.13.1"
+        "bootstrap-icons": "^1.13.1",
+        "bootstrap-table": "^1.27.0",
+        "jquery": "^4.0.0"
     }
 }

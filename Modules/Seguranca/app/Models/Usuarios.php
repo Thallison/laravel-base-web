@@ -1,6 +1,6 @@
 <?php
 
-namespace Modules\Seguranca\Entities;
+namespace Modules\Seguranca\Models;
 
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -99,7 +99,4 @@ class Usuarios extends Authenticatable
         return ['total' => $total, 'rows' => $query->get()];
 
     }
-
-   
-
 }

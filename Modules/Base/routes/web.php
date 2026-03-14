@@ -7,6 +7,7 @@ use Modules\Base\Http\Controllers\BaseController;
     Route::resource('bases', BaseController::class)->names('base');
 });
 */
-Route::prefix('base')->name('base::')->group(function() {
+/*Route::prefix('base')->name('base::')->group(function() {
     Route::resource('base', BaseController::class)->names('base');   
 });
+*/

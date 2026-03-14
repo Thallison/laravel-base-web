@@ -18,9 +18,9 @@
             </ol>
             @endisset
         </div>
-        <div class="col-sm-6">
+        <!--<div class="col-sm-6">
             Actions
-        </div>
+        </div>-->
     </div>
     <!--end::Row-->
     </div>
