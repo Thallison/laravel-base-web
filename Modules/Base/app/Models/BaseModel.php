@@ -4,9 +4,12 @@ namespace Modules\Base\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 abstract class BaseModel extends Model
 {
+    use HasFactory;
+
     /**
      * Desativa a criação de datas padrão laravel
      *

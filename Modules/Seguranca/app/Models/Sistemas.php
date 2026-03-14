@@ -3,7 +3,6 @@
 namespace Modules\Seguranca\Models;
 
 use Modules\Base\Models\BaseModel;
-use Illuminate\Support\Facades\DB;
 
 class Sistemas extends BaseModel
 {
