@@ -123,7 +123,7 @@ class Funcionalidades extends BaseModel
      * Monta um array contendo todos os sistemas, módulos, privilégios e sub-privilégios
      * com um nível de até 4 funcionalidades filhas. Usado principalmente para criar
      * os tabs-navs para adicionar os papeis */
-   /* public function preencheFuncionalidades($checkGestor = false)
+    public function preencheFuncionalidades($checkGestor = false)
     {
         $modelFuncionalidades = new Funcionalidades();
         $modelPrivilegio = new Privilegios();
@@ -141,26 +141,26 @@ class Funcionalidades extends BaseModel
 
         foreach ($listaSistema as $sistema) {
             $modulosSistema['func'][$sistema->sis_id] = $modelModulo->getModulosSistema($sistema->sis_id, $checkGestor);
-            foreach ($modulosSistema['func'][$sistema->sis_id] as $modulo) {
+            
+            foreach ($modulosSistema['func'][$sistema->sis_id] ?? [] as $modulo) {
                 $funcionalidadePais['func'][$modulo->mod_id] = $modelFuncionalidades->getFuncionalidades($modulo->mod_id, NULL, $checkGestor);
-
-                if($funcionalidadePais['func'][$modulo->mod_id]){
-                    foreach ($funcionalidadePais['func'][$modulo->mod_id] as $func1 ){
+                if ($funcionalidadePais['func'][$modulo->mod_id]) {
+                    foreach ($funcionalidadePais['func'][$modulo->mod_id] ?? [] as $func1) {
                         $funcionalidadeFilhasN1['func'][$func1->func_id] = $modelFuncionalidades->getFuncionalidades($modulo->mod_id, $func1->func_id, $checkGestor);
                         $funcionalidadeFilhasN1['priv'][$func1->func_id] = $modelPrivilegio->getPrivilegios($func1->func_id, $checkGestor);
 
-                        if($funcionalidadeFilhasN1['func'][$func1->func_id]->count()){
-                            foreach ($funcionalidadeFilhasN1['func'][$func1->func_id] as $func2 ){
+                        if($funcionalidadeFilhasN1['func'][$func1->func_id]?->count()){
+                            foreach ($funcionalidadeFilhasN1['func'][$func1->func_id] ?? [] as $func2 ){
                                 $funcionalidadeFilhasN2['func'][$func2->func_id] = $modelFuncionalidades->getFuncionalidades($modulo->mod_id, $func2->func_id, $checkGestor);
                                 $funcionalidadeFilhasN2['priv'][$func2->func_id] = $modelPrivilegio->getPrivilegios($func2->func_id, $checkGestor);
 
-                                if($funcionalidadeFilhasN2['func'][$func2->func_id]->count()){
-                                    foreach ( $funcionalidadeFilhasN2['func'][$func2->func_id] as $func3 ){
+                                if($funcionalidadeFilhasN2['func'][$func2->func_id]?->count()){
+                                    foreach ( $funcionalidadeFilhasN2['func'][$func2->func_id] ?? [] as $func3 ){
                                         $funcionalidadeFilhasN3['func'][$func3->func_id] = $modelFuncionalidades->getFuncionalidades($modulo->mod_id, $func3->func_id, $checkGestor);
                                         $funcionalidadeFilhasN3['priv'][$func3->func_id] = $modelPrivilegio->getPrivilegios($func3->func_id, $checkGestor);
 
-                                        if($funcionalidadeFilhasN3['func'][$func3->func_id]->count()){
-                                            foreach ( $funcionalidadeFilhasN3['func'][$func3->func_id] as $func4 ){
+                                        if($funcionalidadeFilhasN3['func'][$func3->func_id]?->count()){
+                                            foreach ( $funcionalidadeFilhasN3['func'][$func3->func_id] ?? [] as $func4 ){
                                                 $funcionalidadeFilhasN4['func'][$func4->func_id] = $modelFuncionalidades->getFuncionalidades($modulo->mod_id, $func3->func4, $checkGestor);
                                                 $funcionalidadeFilhasN4['priv'][$func4->func_id] = $modelPrivilegio->getPrivilegios($func4->func_id, $checkGestor);
                                             }
@@ -183,7 +183,7 @@ class Funcionalidades extends BaseModel
             'funcFilhasN3' => $funcionalidadeFilhasN3,
             'funcFilhasN4' => $funcionalidadeFilhasN4
         );
-    }*/
+    }
 
     /**
      * Lista todas as funcionalidade pai do modulo passado por parametro de um usuario

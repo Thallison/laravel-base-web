@@ -99,4 +99,55 @@ class Usuarios extends Authenticatable
         return ['total' => $total, 'rows' => $query->get()];
 
     }
+
+    /** Relação de muitos pra muitos entre papel e privilegio */
+    public function papeisUsuario()
+    {
+        return $this->belongsToMany(\Modules\Seguranca\Models\Papeis::class,'seg_usuarios_papeis', 'usr_id', 'papel_id');
+    }
+
+    /** Relação de muitos pra muitos entre sistemas e usuario */
+    public function sistemasUsuario()
+    {
+        return $this->belongsToMany(\Modules\Seguranca\Models\Sistemas::class, 'seg_sistemas_usuarios', 'usr_id', 'sis_id');
+    }
+
+    /**
+     * Este metodo atualiza os sistemas do usuario de acordo com os
+     * papeis cadastrados pra ele
+     *
+     * @return boolean
+     */
+    public function atualizaSistemasUsuario()
+    {
+        if(!$this->usr_id){
+            return false;
+        }
+
+        if($this->papeisUsuario()->get()->count()){
+            $sistemas = [];
+            foreach ($this->papeisUsuario()->get() as $papel){
+                $sistemas[] = $papel->getSistemasPapeis();//papel é obrigado a ter sistemas
+            }
+            $this->sistemasUsuario()->sync($this->organizaSistema($sistemas));
+            return true;
+        }else{
+            return false;
+        }
+    }
+
+    /**Organiza os ids dos sistemas para que retorne um array unico */
+    private function organizaSistema(array $sistemas)
+    {
+        $arrSistema = [];
+        foreach($sistemas as $sistema){
+            foreach ($sistema as $sis){
+                if(!in_array($sis, $arrSistema)){
+                    $arrSistema[] = $sis;
+                }
+            }
+        }
+
+        return $arrSistema;
+    }
 }
