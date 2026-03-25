@@ -12,12 +12,13 @@ class SegurancaDatabaseSeeder extends Seeder
     public function run(): void
     {
          $this->call([
-            //SegUsuarioSeeder::class,
-            //SegSistemasSeeder::class,
-            //SegModulosSeeder::class,
-            //SegFuncionalidadesSeeder::class,
-            //SegPrivilegiosSeeder::class,
+            SegUsuarioSeeder::class,
+            SegSistemasSeeder::class,
+            SegModulosSeeder::class,
+            SegFuncionalidadesSeeder::class,
+            SegPrivilegiosSeeder::class,
             SegDependenciasPrivilegiosSeeder::class,
+            SegPerfilPadraoSeeder::class,
          ]);
     }
 }

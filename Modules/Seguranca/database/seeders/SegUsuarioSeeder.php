@@ -14,7 +14,7 @@ class SegUsuarioSeeder extends Seeder
     public function run(): void
     {
         DB::table('seg_usuarios')->insert([
-            'usr_login' => 'thallison.gestor',
+            'usr_login' => 'admin.gestor',
             'password' => Hash::make('123456'),
             'usr_name' => 'Administrador',
             'email' => 'admin@email.com',
