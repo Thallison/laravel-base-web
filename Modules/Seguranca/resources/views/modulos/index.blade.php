@@ -11,7 +11,8 @@
         <a href="{{ route('seguranca::sistemas.index') }}" class="alert-link">Clique aqui para cadastrar um sistema.</a>
     </div>
 @else
-    
+  
+@can('Cadastrar Módulos') 
 <div class="card card-default mb-5">
     <div class="card-header">
         <h5 class="card-title">{{ __('Cadastrar Módulos') }}</h5>
@@ -56,6 +57,7 @@
         </div>
     </form>
 </div>
+@endcan
 
 <div class="card card-default" >
     <div class="card-header header-elements-inline">
@@ -96,10 +98,11 @@
                             <th data-field='mod_icone'>
                                 {{ $model->getAttributeLabel('mod_icone') }}
                             </th>
-                            
+                            @can(['Editar Módulos', 'Excluir Módulos'])
                             <th data-formatter="TableActions" class="w-10">
                                 {{ __('Ações') }}
                             </th>
+                            @endcan
                         </tr>
                     </thead>
                 </table>
@@ -124,16 +127,20 @@
         let urlDel = "{{ route('seguranca::modulos.destroy', ['modulo' => ':id']) }}";
         urlDel = urlDel.replace(":id", id);
 
+        @can('Editar Módulos')
         editar = '<a class="btn btn-outline-info btn-sm"'
                     +'id="editarMod_'+ id +'" data-action="modal-editar-modulo" href="#" data-url="'+urlEdit+'" title="{{ __('Editar') }}" >'
                 +'<i class="bi bi-pencil-square"></i>'
                 +'</a> ';
-        
+        @endcan
+
+        @can('Excluir Módulos')
         excluir = '<a class="btn btn-outline-danger btn-sm"'
                     +'data-method="DELETE"'
                     +'id="deleteMod_'+ id +'" data-action="excluir-modulo" data-table="gridTable" href="#" data-url="'+urlDel+'" title="{{ __('Excluir') }}" >'
                 +'<i class="bi bi-trash3-fill"></i>'
                 +'</a>';
+        @endcan
         
         return [
             '<div class="list-icons">',

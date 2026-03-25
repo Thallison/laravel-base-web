@@ -3,7 +3,8 @@
 @section('page-title', 'Sistemas')
 
 @section('content')
-    
+
+@can('Cadastrar Sistemas')
 <div class="card card-default mb-5">
     <div class="card-header">
         <h5 class="card-title">{{ __('Cadastrar Sistema') }}</h5>
@@ -39,6 +40,7 @@
         </div>
     </form>
 </div>
+@endcan
 
 <div class="card card-default" >
     <div class="card-header header-elements-inline">
@@ -77,9 +79,11 @@
                                 {{ $model->getAttributeLabel('sis_icone') }}
                             </th>
                             
+                            @canany(['Editar Sistemas', 'Excluir Sistema'])
                             <th data-formatter="TableActions" class="w-10">
                                 {{ __('Ações') }}
                             </th>
+                            @endcan
                         </tr>
                     </thead>
                 </table>
@@ -103,16 +107,20 @@
         let urlDel = "{{ route('seguranca::sistemas.destroy', ['sistema' => ':id']) }}";
         urlDel = urlDel.replace(":id", id);
 
+        @can('Editar Sistemas')
         editar = '<a class="btn btn-outline-info btn-sm"'
                     +'id="editarSis_'+ id +'" data-action="modal-editar-sistema" href="#" data-url="'+urlEdit+'" title="{{ __('Editar') }}" >'
                 +'<i class="bi bi-pencil-square"></i>'
                 +'</a> ';
+        @endcan
         
+        @can('Excluir Sistema')
         excluir = '<a class="btn btn-outline-danger btn-sm"'
                     +'data-method="DELETE"'
                     +'id="deleteSis_'+ id +'" data-action="excluir-sistema" data-table="gridTable" href="#" data-url="'+urlDel+'" title="{{ __('Excluir') }}" >'
                 +'<i class="bi bi-trash3-fill"></i>'
                 +'</a>';
+        @endcan
         
         return [
             '<div class="list-icons">',

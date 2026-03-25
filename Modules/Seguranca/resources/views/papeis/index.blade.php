@@ -15,10 +15,12 @@
 <div class="card card-default" >
     <div class="card-header header-elements-inline">
         <h5 class="card-title">{{ __('Lista de Grupos') }}</h5>
+        @can('Cadastrar Papeis')
         <div class="text-end">
             <a href="{{ route('seguranca::papeis.create') }}" class="btn btn-info"><i class="bi bi-plus"></i> {{ __('Cadastrar Grupo') }}</a>
             <a class="list-icons-item" data-action="collapse"></a>
         </div>
+        @endcan
     </div>
 
     <div class="card-body">
@@ -55,9 +57,11 @@
                             <th data-field='updated_at' data-sortable="true">
                                 {{ $model->getAttributeLabel('papel_dt_alteracao') }}
                             </th>
+                            @can(['Editar Papeis', 'Excluir papeis'])
                             <th data-formatter="TableActions" class="w-10">
                                 {{ __('Ações') }}
                             </th>
+                            @endcan
                         </tr>
                     </thead>
                 </table>
@@ -82,16 +86,20 @@
         let urlDel = "{{ route('seguranca::papeis.destroy', ['papei' => ':id']) }}";
         urlDel = urlDel.replace(":id", id);
 
+        @can('Editar Papeis')
         editar = '<a class="btn btn-outline-info btn-sm"'
                     +'id="editarFunc_'+ id +'" href="'+urlEdit+'" title="{{ __('Editar') }}" >'
                 +'<i class="bi bi-pencil-square"></i>'
                 +'</a> ';
+        @endcan
         
+        @can('Excluir papeis')
         excluir = '<a class="btn btn-outline-danger btn-sm"'
                     +'data-method="DELETE"'
                     +'id="deleteFunc_'+ id +'" data-action="excluir-papel" data-table="gridTable" href="#" data-url="'+urlDel+'" title="{{ __('Excluir') }}" >'
                 +'<i class="bi bi-trash3-fill"></i>'
                 +'</a>';
+        @endcan
         
         return [
             '<div class="list-icons">',

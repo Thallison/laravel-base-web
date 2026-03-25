@@ -15,10 +15,12 @@
 <div class="card card-default" >
     <div class="card-header header-elements-inline">
         <h5 class="card-title">{{ __('Lista de Funcionalidades') }}</h5>
+        @can('Cadastrar Funcionalidades')
         <div class="text-end">
             <a href="{{ route('seguranca::funcionalidades.create') }}" class="btn btn-info"><i class="bi bi-plus"></i> {{ __('Cadastrar Funcionalidade') }}</a>
             <a class="list-icons-item" data-action="collapse"></a>
         </div>
+        @endcan
     </div>
 
     <div class="card-body">
@@ -68,9 +70,11 @@
                                 data-formatter="App.formatters.boolean" >
                                 {{ $model->getAttributeLabel('func_acesso_menu') }}
                             </th>
+                            @can(['Editar funcionalidades', 'Excluir Funcionalidades'])
                             <th data-formatter="TableActions" class="w-10">
                                 {{ __('Ações') }}
                             </th>
+                            @endcan
                         </tr>
                     </thead>
                 </table>
@@ -95,16 +99,20 @@
         let urlDel = "{{ route('seguranca::funcionalidades.destroy', ['funcionalidade' => ':id']) }}";
         urlDel = urlDel.replace(":id", id);
 
+        @can('Editar funcionalidades')
         editar = '<a class="btn btn-outline-info btn-sm"'
                     +'id="editarFunc_'+ id +'" href="'+urlEdit+'" title="{{ __('Editar') }}" >'
                 +'<i class="bi bi-pencil-square"></i>'
                 +'</a> ';
+        @endcan
         
+        @can('Excluir Funcionalidades')
         excluir = '<a class="btn btn-outline-danger btn-sm"'
                     +'data-method="DELETE"'
                     +'id="deleteFunc_'+ id +'" data-action="excluir-funcionalidade" data-table="gridTable" href="#" data-url="'+urlDel+'" title="{{ __('Excluir') }}" >'
                 +'<i class="bi bi-trash3-fill"></i>'
                 +'</a>';
+        @endcan
         
         return [
             '<div class="list-icons">',

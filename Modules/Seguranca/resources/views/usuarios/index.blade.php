@@ -9,7 +9,9 @@
         <h5 class="card-title">{{ __('Lista de Sistema') }}</h5>
 
         <div class="text-end">
-            <a href="{{ route('seguranca::usuarios.create') }}" class="btn btn-info"><i class="bi bi-plus"></i> {{ __('Cadastrar Usuários') }}</a>
+            @can('Cadastrar usuário')
+                <a href="{{ route('seguranca::usuarios.create') }}" class="btn btn-info"><i class="bi bi-plus"></i> {{ __('Cadastrar Usuários') }}</a>
+            @endcan
             <a class="list-icons-item" data-action="collapse"></a>
         </div>
 
@@ -61,9 +63,11 @@
                             <th data-field='usr_dt_ultimo_acesso' data-sortable="true">
                                 {{ $model->getAttributeLabel('usr_dt_ultimo_acesso') }}
                             </th>
+                            @canany(['Editar usuário', 'Excluir usuário'])
                             <th data-formatter="TableActions" class="w-10">
                                 {{ __('Ações') }}
                             </th>
+                            @endcan
                         </tr>
                     </thead>
                 </table>
@@ -106,16 +110,20 @@
         let urlDel = "{{ route('seguranca::usuarios.destroy', ['usuario' => ':id']) }}";
         urlDel = urlDel.replace(":id", id);
 
+        @can('Editar usuário')
         editar = '<a class="btn btn-outline-info btn-sm"'
                     +'id="editarUsuario_'+ id +'" href="'+urlEdit+'" title="{{ __('Editar') }}" >'
                 +'<i class="bi bi-pencil-square"></i>'
                 +'</a> ';
+        @endcan
         
+        @can('Excluir usuário')
         excluir = '<a class="btn btn-outline-danger btn-sm"'
                     +'data-method="DELETE"'
                     +'id="deleteUsr_'+ id +'" data-action="excluir-usuario" data-table="gridTable" href="#" data-url="'+urlDel+'" title="{{ __('Excluir') }}" >'
                 +'<i class="bi bi-trash3-fill"></i>'
                 +'</a>';
+        @endcan
         
         return [
             '<div class="list-icons">',
