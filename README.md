@@ -12,10 +12,11 @@ O modulo Seguranca trata as questões de segurança do sistemas, que são cadast
 ## Instalação do projeto
 
 - Após realizar o clone do projeto necessário configurar o arquivo .env com as conexões do banco.
-- Instalar e atualizar o projeto via composer, para que seja instalado as dependencias
+- Instalar e atualizar o projeto via composer, (compose update) para que seja instalado as dependencias
 - Instalar e atualizar o projeto com node (npm install) para que seja instalado as dependencias
 - Executar as migration - php artisan module:migrate Seguranca
 - Executar os seeds - php artisan module:seed Seguranca
+- executar npm run build - para poder gerar os arquivos saas
 - Por padrão já vem 1 usuário admin@email.com com a senha 123456
 
 

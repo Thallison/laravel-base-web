@@ -192,5 +192,9 @@ class SegPerfilPadraoSeeder extends Seeder
             'updated_at' => null,
         ]);
 
+        DB::table('seg_sistemas_usuarios')->insert([
+            'usr_id' => 1,
+            'sis_id' => 1
+        ]);
     }
 }
