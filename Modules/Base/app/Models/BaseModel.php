@@ -63,9 +63,9 @@ abstract class BaseModel extends Model
 
         $query = $this->newQuery();
         
-        $this->searchSelect($query, $search);
+        $this->searchSelect($query);
         $this->searchJoin($query);
-        $this->searchWhere($query);
+        $this->searchWhere($query, $search);
 
         $total = $query->count();
 
@@ -85,17 +85,8 @@ abstract class BaseModel extends Model
      * @param object $data
      * @return void
      */
-    protected function searchSelect($query, $search = null)
+    protected function searchSelect($query)
     {
-        if (!$search || empty($this->searchable)) {
-            return $query;
-        }
-
-        return $query->where(function ($q) use ($search) {
-            foreach ($this->searchable as $column) {
-                $q->orWhere($column, 'like', "%{$search}%");
-            }
-        });
     }
 
     /**
@@ -114,8 +105,17 @@ abstract class BaseModel extends Model
      * @param object $query utilizado para a query da grid
      * @return void
      */
-    protected function searchWhere($query)
+    protected function searchWhere($query, $search = null)
     {
+        if (!$search || empty($this->searchable)) {
+            return $query;
+        }
+
+        return $query->where(function ($q) use ($search) {
+            foreach ($this->searchable as $column) {
+                $q->orWhere($column, 'like', "%{$search}%");
+            }
+        });
     }
 
     /**

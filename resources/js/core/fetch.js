@@ -6,7 +6,9 @@ App.fetch = function(options){
         headers: {
             "X-CSRF-TOKEN": document
                 .querySelector('meta[name="csrf-token"]')
-                ?.getAttribute("content")
+                ?.getAttribute("content"),
+            "Accept": "application/json",
+            "X-Requested-With": "XMLHttpRequest"
         },
         responseType: "json"
     };
@@ -41,9 +43,25 @@ App.fetch = function(options){
     }
 
     fetch(url, fetchOptions)
-        .then(res =>
-            options.responseType === "json" ? res.json() : res.text()
-        )
+        .then(res => {
+            if(options.responseType === "json"){
+                return res.text().then(text => {
+                    const data = text ? JSON.parse(text) : {};
+
+                    if(!res.ok){
+                        return Promise.reject({status: res.status, data});
+                    }
+
+                    return data;
+                });
+            }
+
+            if(!res.ok){
+                return res.text().then(text => Promise.reject({status: res.status, data: text}));
+            }
+
+            return res.text();
+        })
         .then(data => {
             if(options.success){
                 options.success(data);

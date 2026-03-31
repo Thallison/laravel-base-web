@@ -69,7 +69,7 @@
                                                         @forelse ($funcPaiModulos['func'][$modulo->mod_id] as $funcPai)
                                                             <div class="d-flex flex-column gap-2">
                                                             <!-- ITEM 1 -->
-                                                                <div class=" mb-3">
+                                                                <div class="mb-3">
                                                                     <button class="btn btn-secondary w-100 text-start"
                                                                             data-bs-toggle="collapse"
                                                                             data-bs-target="#collapsible-funcPai{{ $funcPai->func_id }}" type="button">
@@ -81,19 +81,19 @@
                                                                         @forelse ($funcFilhasN1['func'][$funcPai->func_id] as $func1)
                                                                             <div class="d-flex flex-column gap-2">
                                                                             <!-- funcFilhasN1 -->
-                                                                                <div>
+                                                                                <div class="mb-3">
                                                                                     <button class="btn btn-secondary w-100 text-start"
                                                                                             data-bs-toggle="collapse"
                                                                                             data-bs-target="#collapsible-func1{{ $func1->func_id }}" type="button">
                                                                                     {{ $func1->func_label }}
                                                                                     </button>
 
-                                                                                    <div class="collapse mt-1" id="#collapsible-func1{{ $func1->func_id }}">
+                                                                                    <div class="collapse mt-1" id="collapsible-func1{{ $func1->func_id }}">
                                                                                         <div class="card card-body">
                                                                                         @forelse ($funcFilhasN2['func'][$func1->func_id] as $func2)
                                                                                             <div class="d-flex flex-column gap-2">
                                                                                             <!-- funcFilhasN2 -->
-                                                                                                <div>
+                                                                                                <div class="mb-3">
                                                                                                     <button class="btn btn-secondary w-100 text-start"
                                                                                                             data-bs-toggle="collapse"
                                                                                                             data-bs-target="#collapsible-func2{{ $func2->func_id }}" type="button">
@@ -105,7 +105,7 @@
                                                                                                         @forelse ($funcFilhasN3['func'][$func2->func_id] as $func3)
                                                                                                             <div class="d-flex flex-column gap-2">
                                                                                                             <!-- funcFilhasN3 -->
-                                                                                                                <div>
+                                                                                                                <div class="mb-3">
                                                                                                                     <button class="btn btn-secondary w-100 text-start"
                                                                                                                             data-bs-toggle="collapse"
                                                                                                                             data-bs-target="#collapsible-func3{{ $func3->func_id }}" type="button">
@@ -117,7 +117,7 @@
                                                                                                                         @forelse ($funcFilhasN4['func'][$func3->func_id] as $func4)
                                                                                                                             <div class="d-flex flex-column gap-2">
                                                                                                                             <!-- funcFilhasN4 -->
-                                                                                                                                <div>
+                                                                                                                                <div class="mb-3">
                                                                                                                                     <button class="btn btn-secondary w-100 text-start"
                                                                                                                                             data-bs-toggle="collapse"
                                                                                                                                             data-bs-target="#collapsible-func4{{ $func4->func_id }}" type="button">
